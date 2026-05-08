@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  {% load static %}
+<link rel="stylesheet" href="{% static 'css/Style1.css' %}">
+  <title>Department</title>
+</head>
+
+<body>
+<div class="home-container">
+  <h1>Select Department</h1>
+
+  <div class="dept-box" onclick="goTo('cst.html')">
+    Computer Science and Technology
+  </div>
+
+  <div class="dept-box" onclick="goTo('civil.html')">
+    Civil Engineering
+  </div>
+
+  <div class="dept-box" onclick="goTo('electrical.html')">
+    Electrical Engineering
+  </div>
+  <div class="dept-box" onclick="goTo('civil.html')">
+    Mechanical Engineering
+  </div>
+</div>
+
+<script>
+function goTo(page) {
+  window.location.href = page;
+}
+</script>
+
+</body>
+</html>

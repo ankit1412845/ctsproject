@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+<link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <title>CTS | Login</title>
+  </head>
+<body>
+  <div class="box">
+    <div class="container">
+      <div class="top-header">
+        <span>Have an account?</span>
+        <header>CTS Login</header>
+      </div>
+<form action="/home/" method="get">
+  {% csrf_token %}
+  <div class="input-field">
+    <input type="text" class="input" name="username" placeholder="Username" autocomplete="username" required>
+    <i class="bx bx-user" aria-hidden="true"></i>
+  </div>
+  <div class="input-field">
+  <input type="tel" class="input" placeholder="Contact Number" required>
+  <i class="bx bx-mobile"></i>
+</div>
+  <div class="input-field">
+    <input type="password" class="input" name="password" placeholder="Password" autocomplete="current-password" required>
+    <i class="bx bx-lock-alt" aria-hidden="true"></i>
+  </div>
+  <div class="input-field">
+    <input type="submit" class="submit" value="Login">
+  </div>
+</form>
+<div class="bottom">
+                <div class="left">
+                    <input type="checkbox" id="check">
+                    <label for="check"> Remember Me</label>
+                </div>
+                <div class="right">
+                    <label><a href="#">Forgot password?</a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
