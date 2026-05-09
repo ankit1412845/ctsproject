@@ -5,3 +5,6 @@ def login(request):
 
 def home(request):
     return render(request, 'main/home.html')
+
+def semester(request):
+    return render(request, 'main/semester.html')
