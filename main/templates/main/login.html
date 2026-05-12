@@ -2,50 +2,167 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
-<link rel="stylesheet" href="{% static 'css/Style.css' %}">
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <title>CTS | Login</title>
-  </head>
-<body>
-  <div class="box">
-    <div class="container">
-      <div class="top-header">
-        <span>Have an account?</span>
-        <header>CTS Login</header>
-      </div>
-<form action="/home/" method="get">
-  {% csrf_token %}
-  <div class="input-field">
-    <input type="text" class="input" name="username" placeholder="Username" autocomplete="username" required>
-    <i class="bx bx-user" aria-hidden="true"></i>
-  </div>
-  <div class="input-field">
-  <input type="tel" class="input" placeholder="Contact Number" required>
-  <i class="bx bx-mobile"></i>
-</div>
-  <div class="input-field">
-    <input type="password" class="input" name="password" placeholder="Password" autocomplete="current-password" required>
-    <i class="bx bx-lock-alt" aria-hidden="true"></i>
-  </div>
-  <div class="input-field">
-    <input type="submit" class="submit" value="Login">
-  </div>
-</form>
-<div class="bottom">
-                <div class="left">
-                    <input type="checkbox" id="check">
-                    <label for="check"> Remember Me</label>
-                </div>
-                <div class="right">
-                    <label><a href="#">Forgot password?</a></label>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
 
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    {% load static %}
+   <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+
+    <title>Animated Login & Register | Ludiflex</title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- FORM HEADER -->
+      <div class="form-header">
+        <div class="titles">
+          <!-- Register ke age rakha holo -->
+          <span class="title-register">Register</span>
+          <span class="title-login">Login</span>
+        </div>
+      </div>
+
+      <!-- REGISTER FORM FIRST -->
+      <div class="register-form" style="left: 0px;">
+        <div class="input-box">
+          <input
+            type="text"
+            id="reg-user"
+            class="input-field"
+            autocomplete="off"
+            required
+          />
+          <label for="reg-user" class="label">Username</label>
+          <i class="bx bx-user icon"></i>
+        </div>
+
+        <div class="input-box">
+          <input
+            type="text"
+            id="email"
+            class="input-field"
+            autocomplete="off"
+            required
+          />
+          <label for="email" class="label">Email</label>
+          <i class="bx bx-envelope icon"></i>
+        </div>
+
+        <div class="input-box">
+          <input
+            type="password"
+            id="reg-pass"
+            class="input-field"
+            autocomplete="off"
+            required
+          />
+          <label for="reg-pass" class="label">Password</label>
+          <i class="bx bx-lock-alt icon"></i>
+        </div>
+
+        <div class="form-cols">
+          <div class="col-1">
+            <input type="checkbox" id="remember" />
+            <label for="remember">
+              I agree to the terms & condition
+            </label>
+          </div>
+        </div>
+
+        <div class="input-box">
+          <button class="btn-submit" id="SignUpBtn">
+            Sign Up <i class="bx bx-user-plus"></i>
+          </button>
+        </div>
+
+        <div class="switch-form">
+          <span>
+            Already have an account?
+            <a href="#" onclick="loginFunction()">Login</a>
+          </span>
+        </div>
+      </div>
+
+      <!-- LOGIN FORM SECOND -->
+      <div class="login-form" style="left: -500px;">
+        <div class="input-box">
+          <input
+            type="text"
+            id="user"
+            class="input-field"
+            autocomplete="off"
+            required
+          />
+          <label for="user" class="label">Username</label>
+          <i class="bx bx-user icon"></i>
+        </div>
+
+        <div class="input-box">
+          <input
+            type="password"
+            id="pass"
+            class="input-field"
+            autocomplete="off"
+            required
+          />
+          <label for="pass" class="label">Password</label>
+          <i class="bx bx-lock-alt icon"></i>
+        </div>
+
+        <div class="form-cols">
+          <div class="col-2">
+            <a href="#">Forgot password?</a>
+          </div>
+        </div>
+
+        <button class="btn-submit" id="SignInBtn">
+         Login <i class="bx bx-log-in"></i>
+         </button>
+
+        <div class="switch-form">
+          <span>
+            Don't have an account?
+            <a href="#" onclick="registerFunction()">Register</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="toaster">
+      <p>Logged In !</p>
+    </div>
+
+    <!-- SCRIPT -->
+<script>
+  function loginFunction() {
+    document.querySelector(".login-form").style.left = "32px";
+    document.querySelector(".register-form").style.left = "100%";
+
+    document.querySelector(".title-login").style.top = "-10px";
+    document.querySelector(".title-register").style.top = "-60px";
+
+    document.getElementById("SignInBtn").innerHTML =
+      'Login <i class="bx bx-log-in"></i>';
+  }
+
+  function registerFunction() {
+    document.querySelector(".login-form").style.left = "-100%";
+    document.querySelector(".register-form").style.left = "32px";
+
+    document.querySelector(".title-login").style.top = "40px";
+    document.querySelector(".title-register").style.top = "-10px";
+
+    document.getElementById("SignUpBtn").innerHTML =
+      'Sign Up <i class="bx bx-user-plus"></i>';
+  }
+
+  window.onload = registerFunction;
+</script>
+  </body>
 </html>
