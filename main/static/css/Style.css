@@ -256,50 +256,80 @@ a:hover {
 
 @media (max-width: 700px){
   body{
-    align-items:flex-start;
-    padding-top:40px;
+    min-height:100vh;
+    padding:20px 0;
+    align-items:center;
   }
 
   .wrapper{
-    width:92%;
+    width:92vw;
+    height:620px;
     min-height:620px;
-    height:auto;
-    padding:120px 25px 35px;
+    padding:110px 22px 30px;
+    border-radius:18px;
+  }
+
+  .form-header{
+    width:150px;
+    height:85px;
+  }
+
+  .title-register,
+  .title-login{
+    font-size:26px;
   }
 
   .register-form,
   .login-form{
-    top:130px;
-    width:calc(100% - 50px);
+    top:120px;
+    width:calc(100% - 44px);
   }
 
   .register-form{
-    left:25px;
+    left:22px;
   }
 
   .login-form{
     left:-100%;
   }
 
+  .input-box{
+    margin:18px 0;
+  }
+
   .input-field{
-    height:55px;
+    height:56px;
     font-size:18px;
+    padding-left:22px;
+    padding-right:55px;
   }
 
   .label{
+    font-size:15px;
+    left:22px;
+  }
+
+  .icon{
+    right:22px;
+    font-size:22px;
+  }
+
+  .form-cols{
     font-size:16px;
+    margin:15px 0;
   }
 
   .btn-submit{
-    height:55px;
+    height:56px;
     font-size:20px;
   }
 
   .switch-form{
-    font-size:18px;
+    font-size:16px;
+    margin-top:18px;
   }
 
   .toaster{
-    display:none;
+    display:none !important;
   }
 }
