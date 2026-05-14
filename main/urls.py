@@ -1,12 +1,10 @@
 from django.urls import path
-from .views import login, home, semester, civil, electrical, mechanical
+from . import views
 
 urlpatterns = [
-    path('', login, name='login'),
-    path('home/', home, name='home'),
-    path('semester/', semester, name='semester'),
-   path('civil/', civil, name='civil'),
-   path('electrical/', electrical, name='electrical'),
-   path('mechanical/', mechanical, name='mechanical'),
+    path('', views.login_page, name='login'),
+    path('home/', views.home, name='home'),
+    path('semester/', views.semester, name='semester'),
 
+    path('upload/<int:sem_no>/', views.upload_pdf, name='upload_pdf'),
 ]

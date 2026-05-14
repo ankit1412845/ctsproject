@@ -1,35 +1,24 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  {% load static %}
-<link rel="stylesheet" href="{% static 'css/Style1.css' %}">
-  <title>Department</title>
+  <title>Home</title>
+  <link rel="stylesheet" href="{% static 'css/Style1.css' %}">
 </head>
-
 <body>
+
 <div class="home-container">
   <h1>Select Department</h1>
 
-  <div class="dept-box" onclick="goTo('/semester/')">
-  Computer Science and Technology
-</div>
-
- <div class="dept-box" onclick="goTo('/civil/')">
-    Civil Engineering
-  </div>
-
-  <div class="dept-box" onclick="goTo('/electrical/')">
-    Electrical Engineering
-  </div>
- <div class="dept-box" onclick="goTo('/mechanical/')">
-    Mechanical Engineering
-  </div>
+  <div class="dept-box" onclick="goToSemester()">Computer Science and Technology</div>
+  <div class="dept-box" onclick="goToSemester()">Civil Engineering</div>
+  <div class="dept-box" onclick="goToSemester()">Electrical Engineering</div>
+  <div class="dept-box" onclick="goToSemester()">Mechanical Engineering</div>
 </div>
 
 <script>
-function goTo(page) {
-  window.location.href = page;
+function goToSemester() {
+  window.location.href = "{% url 'semester' %}";
 }
 </script>
 
