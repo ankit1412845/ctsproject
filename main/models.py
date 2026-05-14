@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+class PDFUpload(models.Model):
+    semester = models.IntegerField()
+    pdf_file = models.FileField(upload_to='pdfs/')
+
+    def __str__(self):
+        return self.pdf_file.name

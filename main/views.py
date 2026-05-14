@@ -49,7 +49,30 @@ def home(request):
 def semester(request):
     return render(request, "main/semester.html")
 
+from .models import PDFUpload
+
 def upload_pdf(request, sem_no):
+
+    if request.method == "POST":
+        pdf_file = request.FILES.get("pdf_file")
+
+        if pdf_file:
+            PDFUpload.objects.create(
+                semester=sem_no,
+                pdf_file=pdf_file
+            )
+
+        return redirect("upload_pdf", sem_no=sem_no)
+
+    pdfs = PDFUpload.objects.filter(semester=sem_no)
+
     return render(request, "main/upload.html", {
-        "sem_no": sem_no
+        "sem_no": sem_no,
+        "pdfs": pdfs
     })
+
+def delete_pdf(request, pdf_id):
+    pdf = PDFUpload.objects.get(id=pdf_id)
+    sem_no = pdf.semester
+    pdf.delete()
+    return redirect("upload_pdf", sem_no=sem_no)

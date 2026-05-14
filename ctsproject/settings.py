@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=cfo^7rxfrq0@87*@n*vr*zx2lg^&bf42s^%x51eos*6yit-l2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["ctsproject.onrender.com", "localhost", "127.0.0.1"]
 
@@ -86,12 +86,12 @@ WSGI_APPLICATION = 'ctsproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ctsproject_db',
-        'USER': 'root',
-        'PASSWORD': 'Ankit@2005',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ctsprojectdb_tqj1',
+        'USER': 'ctsuser',
+        'PASSWORD': 'ibKDTvBgiTDixHAhOJneP12NZpBXzVUx',
+        'HOST': 'dpg-d833orv7f7vs73fkghl0-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
@@ -129,3 +129,5 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
