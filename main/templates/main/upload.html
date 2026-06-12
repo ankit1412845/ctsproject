@@ -36,19 +36,30 @@
     <!-- Uploaded PDF List -->
     {% for pdf in pdfs %}
 
-        <div class="pdf-box">
+       <div class="pdf-box">
 
-            <!-- PDF Link -->
-            <a href="{{ pdf.pdf_file.url }}" target="_blank">
-                {{ pdf.pdf_file.name }}
-            </a>
+    <a href="{{ pdf.pdf_file.url }}"
+       target="_blank"
+       class="pdf-link">
+        📄 {{ pdf.pdf_file.name }}
+    </a>
 
-            <!-- Delete Button -->
-            <a href="{% url 'delete_pdf' pdf.id %}" class="delete-btn">
-                Delete
-            </a>
+    <div class="action-buttons">
 
-        </div>
+        <a href="{{ pdf.pdf_file.url }}"
+           download
+           class="download-btn">
+            Download
+        </a>
+
+        <a href="{% url 'delete_pdf' pdf.id %}"
+           class="delete-btn">
+            Delete
+        </a>
+
+    </div>
+
+</div>
 
     {% empty %}
 
