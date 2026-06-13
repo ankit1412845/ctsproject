@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from .models import PDFUpload, SubjectPDF
+import os
+
 
 def login_page(request):
     if request.method == "POST":
         form_type = request.POST.get("form_type")
 
-        # REGISTER
         if form_type == "register":
             username = request.POST.get("username")
             email = request.POST.get("email")
@@ -17,16 +19,10 @@ def login_page(request):
                 messages.error(request, "Username already exists")
                 return redirect("/?login=true")
 
-            User.objects.create_user(
-                username=username,
-                email=email,
-                password=password
-            )
-
+            User.objects.create_user(username=username, email=email, password=password)
             messages.success(request, "Registration successful. Please login.")
             return redirect("/?login=true")
 
-        # LOGIN
         elif form_type == "login":
             username = request.POST.get("username")
             password = request.POST.get("password")
@@ -46,13 +42,12 @@ def login_page(request):
 def home(request):
     return render(request, "main/home.html")
 
+
 def semester(request):
     return render(request, "main/semester.html")
 
-from .models import PDFUpload
 
 def upload_pdf(request, sem_no):
-
     if request.method == "POST":
         pdf_file = request.FILES.get("pdf_file")
 
@@ -71,14 +66,17 @@ def upload_pdf(request, sem_no):
         "pdfs": pdfs
     })
 
+
 def delete_pdf(request, pdf_id):
     pdf = PDFUpload.objects.get(id=pdf_id)
     sem_no = pdf.semester
+
+    if pdf.pdf_file and os.path.isfile(pdf.pdf_file.path):
+        os.remove(pdf.pdf_file.path)
+
     pdf.delete()
     return redirect("upload_pdf", sem_no=sem_no)
 
-from .models import SubjectPDF
-import os
 
 SUBJECTS = {
     "cst": {
@@ -115,8 +113,10 @@ SUBJECTS = {
     },
 }
 
+
 def subject_page(request, dept_name):
     subjects = SUBJECTS.get(dept_name)
+
     return render(request, "main/subjects.html", {
         "dept_name": dept_name,
         "subjects": subjects
@@ -131,7 +131,13 @@ def subject_upload(request, dept_name, sem_no, subject_name):
             subject=subject_name,
             pdf_file=request.FILES["pdf_file"]
         )
-        return redirect("subject_upload", dept_name=dept_name, sem_no=sem_no, subject_name=subject_name)
+
+        return redirect(
+            "subject_upload",
+            dept_name=dept_name,
+            sem_no=sem_no,
+            subject_name=subject_name
+        )
 
     pdfs = SubjectPDF.objects.filter(
         department=dept_name,
@@ -139,13 +145,13 @@ def subject_upload(request, dept_name, sem_no, subject_name):
         subject=subject_name
     ).order_by("-uploaded_at")
 
-   return render(request, "main/upload.html", {
-    "dept_name": dept_name,
-    "sem_no": sem_no,
-    "subject_name": subject_name,
-    "pdfs": pdfs,
-    "is_subject_upload": True,
-})
+    return render(request, "main/upload.html", {
+        "dept_name": dept_name,
+        "sem_no": sem_no,
+        "subject_name": subject_name,
+        "pdfs": pdfs,
+        "is_subject_upload": True,
+    })
 
 
 def delete_subject_pdf(request, pdf_id):
@@ -159,4 +165,9 @@ def delete_subject_pdf(request, pdf_id):
 
     pdf.delete()
 
-    return redirect("subject_upload", dept_name=dept_name, sem_no=sem_no, subject_name=subject_name)
+    return redirect(
+        "subject_upload",
+        dept_name=dept_name,
+        sem_no=sem_no,
+        subject_name=subject_name
+    )
