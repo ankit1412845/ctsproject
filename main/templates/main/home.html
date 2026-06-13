@@ -10,17 +10,25 @@
 <div class="home-container">
   <h1>Select Department</h1>
 
-  <div class="dept-box" onclick="goToSemester()">Computer Science and Technology</div>
-  <div class="dept-box" onclick="goToSemester()">Civil Engineering</div>
-  <div class="dept-box" onclick="goToSemester()">Electrical Engineering</div>
-  <div class="dept-box" onclick="goToSemester()">Mechanical Engineering</div>
+<div class="dept-box"
+     onclick="window.location.href='{% url 'semester' 'cst' %}'">
+    Computer Science and Technology
 </div>
 
-<script>
-function goToSemester() {
-  window.location.href = "{% url 'semester' %}";
-}
-</script>
+<div class="dept-box"
+     onclick="window.location.href='{% url 'semester' 'civil' %}'">
+    Civil Engineering
+</div>
+
+<div class="dept-box"
+     onclick="window.location.href='{% url 'semester' 'electrical' %}'">
+    Electrical Engineering
+</div>
+
+<div class="dept-box"
+     onclick="window.location.href='{% url 'semester' 'mechanical' %}'">
+    Mechanical Engineering
+</div>
 
 </body>
 </html>
