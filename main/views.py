@@ -43,9 +43,10 @@ def home(request):
     return render(request, "main/home.html")
 
 
-def semester(request):
-    return render(request, "main/semester.html")
-
+def semester(request, dept_name):
+    return render(request, "main/semester.html", {
+        "dept_name": dept_name
+    })
 
 def upload_pdf(request, sem_no):
     if request.method == "POST":
