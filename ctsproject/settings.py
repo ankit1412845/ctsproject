@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -87,17 +88,11 @@ WSGI_APPLICATION = 'ctsproject.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ctsprojectdb_tqj1',
-        'USER': 'ctsuser',
-        'PASSWORD': 'ibKDTvBgiTDixHAhOJneP12NZpBXzVUx',
-        'HOST': 'dpg-d833orv7f7vs73fkghl0-a.oregon-postgres.render.com',
-        'PORT': '5432',
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('postgresql://neondb_owner:npg_LZOut4WF6mcq@ep-lucky-shadow-aokpccwa.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require'),
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
 
 # Password validation
