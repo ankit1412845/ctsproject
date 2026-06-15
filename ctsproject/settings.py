@@ -92,9 +92,11 @@ DATABASES = {
         'PASSWORD': 'ibKDTvBgiTDixHAhOJneP12NZpBXzVUx',
         'HOST': 'dpg-d833orv7f7vs73fkghl0-a.oregon-postgres.render.com',
         'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
