@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
     'cloudinary',
     'cloudinary_storage',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -137,9 +137,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dbvttljhn',
-    'API_KEY': '548882782553366',
-    'API_SECRET': 'hGOdXfN1etfheuDrzmQgtyspYCM',
+    'CLOUD_NAME': os.environ.get('dbvttljhn'),
+    'API_KEY': os.environ.get('548882782553366'),
+    'API_SECRET': os.environ.get('hGOdXfN1etfheuDrzmQgtyspYCM'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
