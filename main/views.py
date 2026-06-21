@@ -72,8 +72,8 @@ def delete_pdf(request, pdf_id):
     pdf = PDFUpload.objects.get(id=pdf_id)
     sem_no = pdf.semester
 
-    if pdf.pdf_file and os.path.isfile(pdf.pdf_file.path):
-        os.remove(pdf.pdf_file.path)
+    if pdf.pdf_file:
+        pdf.pdf_file.delete(save=False)
 
     pdf.delete()
     return redirect("upload_pdf", sem_no=sem_no)
@@ -161,8 +161,8 @@ def delete_subject_pdf(request, pdf_id):
     sem_no = pdf.semester
     subject_name = pdf.subject
 
-    if pdf.pdf_file and os.path.isfile(pdf.pdf_file.path):
-        os.remove(pdf.pdf_file.path)
+    if pdf.pdf_file:
+        pdf.pdf_file.delete(save=False)
 
     pdf.delete()
 
