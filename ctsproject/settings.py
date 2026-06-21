@@ -155,7 +155,4 @@ STORAGES = {
     },
 }
 
-git add ctsproject/settings.py
-git commit -m "Use Cloudinary raw storage for PDFs"
-git push
 
