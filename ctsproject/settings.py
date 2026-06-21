@@ -146,3 +146,16 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.RawMediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+git add ctsproject/settings.py
+git commit -m "Use Cloudinary raw storage for PDFs"
+git push
+
